@@ -35,7 +35,7 @@
                 </div>
 
                 <div x-data="{ isOpen: false }">
-                    @if (count($movie['videos']['results']) > 0)
+                    @if (count($movie['videos']) > 0)
                         <div class="mt-12">
                             <button
                                 @click="isOpen = true"
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="modal-body px-8 py-8">
                                             <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
-                                                <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos'][0]['key'] }}" style="border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                             </div>
                                         </div>
                                     </div>
@@ -84,9 +84,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($movie['cast'] as $cast)
                     <div class="mt-8">
-                        <a href="{{ route('actors.show', $cast['id']) }}">
-                            <img src="{{ $cast['profile_path'] }}" alt="actor1" class="hover:opacity-75 transition ease-in-out duration-150">
-                        </a>
+                        <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$cast['profile_path'] }}" alt="actor1" class="hover:opacity-75 transition ease-in-out duration-150">
+
                         <div class="mt-2">
                             <a href="{{ route('actors.show', $cast['id']) }}" class="text-lg mt-2 hover:text-gray:300">{{ $cast['name'] }}</a>
                             <div class="text-sm text-gray-400">
